@@ -1,0 +1,2 @@
+# komagoma
+雑多
