@@ -1,1 +1,64 @@
-te
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <div>
+                <v-app-bar color="gray accent-4">
+                    <!-- navは[v-btn]ではなく。 -->
+                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                    <v-toolbar-title>a</v-toolbar-title>
+                    <!-- flex-grow:1 を挟んで成行き設定する -->
+                    <div class="flex-grow-1"></div>
+                    <v-btn icon>
+                        <v-icon>mdi-heart</v-icon>
+                    </v-btn>
+                    <!-- propにiconを指定。 -->
+                    <v-btn icon>
+                        <v-icon>mdi-magnify</v-icon>
+                    </v-btn>
+                    <v-menu left bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on">
+                                <v-icon>mdi-dots-vertical</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item v-for="n in 5" :key="n" @click="() => {}">
+                                <v-list-item-title>link:{{ n }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-app-bar>
+            </div>
+            <v-content>
+                <v-container>Hello world</v-container>
+                <v-btn>ss</v-btn>
+                <v-btn>ss</v-btn>
+                <v-btn>ss</v-btn>
+            </v-content>
+            <v-footer>
+
+            </v-footer>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        })
+    </script>
+</body>
+
+</html>
