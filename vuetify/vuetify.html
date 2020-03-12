@@ -12,10 +12,16 @@
     <div id="app">
         <v-app>
             <div>
-                <v-app-bar color="gray accent-4">
+                <!-- dark指定：配下文字色は白。 -->
+                <v-app-bar color="gray accent-4"
+                    src="https://cdn.pixabay.com/photo/2015/12/08/00/26/food-1081707_1280.jpg" prominent="true" dark>
+                    <!-- propsで受け取る仕組みが不明 -->
+                    <template v-slot:img="{ props }">
+                        <v-img v-bind="props" gradient="to top right, rgba(0,0,0,.5), rgba(0,0,0,.8)"></v-img>
+                    </template>
                     <!-- navは[v-btn]ではなく。 -->
                     <v-app-bar-nav-icon></v-app-bar-nav-icon>
-                    <v-toolbar-title>a</v-toolbar-title>
+                    <v-toolbar-title color="#FCB69F"> - header sample - </v-toolbar-title>
                     <!-- flex-grow:1 を挟んで成行き設定する -->
                     <div class="flex-grow-1"></div>
                     <v-btn icon>
@@ -40,13 +46,18 @@
                 </v-app-bar>
             </div>
             <v-content>
+                <div>
+                    <v-breadcrumbs :items="items" divider=">"></v-breadcrumbs>
+                </div>
                 <v-container>Hello world</v-container>
                 <v-btn>ss</v-btn>
                 <v-btn>ss</v-btn>
                 <v-btn>ss</v-btn>
             </v-content>
             <v-footer>
-
+                <div class="flex-grow-1"></div>
+                <div> - footer menu sample - </div>
+                <!-- <div>aaa</div> -->
             </v-footer>
         </v-app>
     </div>
@@ -57,6 +68,15 @@
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
+            data: () => ({
+                items: [
+                    {
+                        text: 'Home',
+                        disabled: false,
+                        href: 'http://yahoo.co.jp'
+                    }
+                ]
+            })
         })
     </script>
 </body>
