@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <!-- アレルゲン情報等はモーダルで表示しよう。 -->
+        <v-app>
+            <div>
+                <!-- dark指定：配下文字色は白。 -->
+                <v-app-bar color="gray accent-4"
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ffb7cfea-2fa0-458c-8e1c-9d94b9d2f2dd/dz628h-c0c1a280-418d-4d85-a262-f760c1a76d6c.jpg/v1/fill/w_1047,h_763,q_70,strp/wood_wallpaper_by_stenosis_dz628h-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA1MCIsInBhdGgiOiJcL2ZcL2ZmYjdjZmVhLTJmYTAtNDU4Yy04ZTFjLTlkOTRiOWQyZjJkZFwvZHo2MjhoLWMwYzFhMjgwLTQxOGQtNGQ4NS1hMjYyLWY3NjBjMWE3NmQ2Yy5qcGciLCJ3aWR0aCI6Ijw9MTQ0MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.DMvNkLbLWVogKp3poQByJLtvUgi3ETpZ4YtfUC3bSxo"
+                    prominent="true" dark>
+                    <!-- propsで受け取る仕組みが不明 -->
+                    <template v-slot:img="{ props }">
+                        <v-img v-bind="props" gradient="to top right, rgba(0,0,0,.5), rgba(0,0,0,.8)"></v-img>
+                    </template>
+                    <!-- navは[v-btn]ではなく。 -->
+                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                    <v-toolbar-title color="#FCB69F"> - header sample - </v-toolbar-title>
+                    <!-- flex-grow:1 を挟んで成行き設定する -->
+                    <div class="flex-grow-1"></div>
+                    <v-btn icon>
+                        <v-icon>mdi-heart</v-icon>
+                    </v-btn>
+                    <!-- propにiconを指定。 -->
+                    <v-btn icon>
+                        <v-icon>mdi-magnify</v-icon>
+                    </v-btn>
+                    <v-menu left bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on">
+                                <v-icon>mdi-dots-vertical</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item v-for="n in 5" :key="n" @click="() => {}">
+                                <v-list-item-title>link:{{ n }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-app-bar>
+            </div>
+            <v-content>
+                <!-- breadcrumb -->
+                <div>
+                    <v-breadcrumbs :items="items" divider=">"></v-breadcrumbs>
+                </div>
+                <!--  -->
+                <v-container>Hello world</v-container>
+                <v-btn>ss</v-btn>
+                <v-btn>ss</v-btn>
+                <v-btn>ss</v-btn>
+                <v-img src="https://cdn.pixabay.com/photo/2015/12/08/00/26/food-1081707_1280.jpg"
+                    gradient="to top right, rgba(0,0,0,.5), rgba(0,0,0,.8)"></v-img>
+                <!-- carousel -->
+                <v-carousel>
+                    <!-- cycle：ループ -->
+                    <v-carousel-item v-for="(color, i) in colors" :key="color" cycle="true" touch="left">
+                        <v-sheet :color="color" height="100%" tile>
+                            <v-row classs="fill-height" align="center" justify="center">
+                                <div class="display-3">slide: {{ i + 1 }}</div>
+                            </v-row>
+                        </v-sheet>
+                    </v-carousel-item>
+                </v-carousel>
+                <!--  -->
+                <!-- card -->
+                <!-- 通常はコンポーネント呼び出ししそう。 -->
+                <v-layout wrap>
+                    <v-flex xs12 sm6 md4 text-center my-5 v-for="n in 3">
+                        <v-card max-width="344" class="mx-auto">
+                            <v-card-title>title{{ n }}</v-card-title>
+                            <v-card-text>
+                                contents{{ n }}.
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-btn text>more{{ n }}</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+                <!--  -->
+                <!-- expansions -->
+                <!-- これもコンポーネントで使用しそう。 -->
+                <v-expansion-panels>
+                    <v-expansion-panel v-for="(item,i) in 5" :key="i">
+                        <v-expansion-panel-header> - expansion - </v-expansion-panel-header>
+                        <v-expansion-panel-content>content. brbrbrbrbrbrbrbrbrbr</v-expansion-panel-content>
+                    </v-expansion-panel>
+                </v-expansion-panels>
+                <!--  -->
+                <br>
+                <!-- calender -->
+                <v-layout justify-center>
+                    <v-card-title class="font-weight-bold">2020/03 Business Day</v-card-title>
+                </v-layout>
+                <!-- margin：細かい指定は下記 -->
+                <!-- https://vuetifyjs.com/ja/styles/spacing/ -->
+                <v-sheet height="400" elevation="24" class="mb-10 mx-10">
+                    <v-calendar type="month" now="2020-03-16" value="2020-03-15" :events="events"></v-calendar>
+                </v-sheet>
+                <!--  -->
+            </v-content>
+            <v-footer>
+                <div class="flex-grow-1"></div>
+                <div> - footer menu sample - </div>
+                <!-- <div>aaa</div> -->
+            </v-footer>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                items: [
+                    {
+                        text: 'Home',
+                        disabled: false,
+                        href: 'http://yahoo.co.jp'
+                    },
+                    {
+                        text: 'food',
+                        disabled: false,
+                        href: '../menu.html'
+                    },
+                    {
+                        text: 'なんちゃらバーガー',
+                        disabled: true,
+                        href: '../hogeburger.html'
+                    },
+                ],
+                colors: [,
+                    'primary',
+                    'secondary',
+                    'yellow darken-2',
+                    'red',
+                    'orange'
+                ],
+                events: [
+                    {
+                        name: 'aaa',
+                        start: '2020-03-14',
+                        end: '2020-03-20'
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+
+</html>
