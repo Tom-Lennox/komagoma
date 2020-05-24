@@ -1,0 +1,39 @@
+<!-- ■グローバル登録・ローカル登録 -->
+<!-- # ▼ body -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+<div id="app">
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+  <hr>
+</div>
+<div id="app2">
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+</div>
+<!-- # ▲ body -->
+<script>
+/* # ▼ script */
+/* Vue.component('my-component', { */
+var component = {
+	data: function() {
+    return {
+      number: 12
+    }
+  },
+  template: ` <p>いいね({{ number }})<button @click="increment">+1</button>{{ $data }}`,
+  methods: {
+    increment: function() {
+      this.number +=1;
+    }
+  }
+}
+
+new Vue({
+	el: '#app',
+  components: {
+  	'my-component': component
+  }
+})
+</script>
